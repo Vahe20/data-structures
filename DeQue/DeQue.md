@@ -35,45 +35,45 @@
 
 ### pushBack(value)
 
-- Adds value to the back of the deque.
+* Adds value to the back of the deque.
 ```js
     dq.pushBack(5);
 ```
 
 ### pushFront(value)
 
-- Adds value to the front of the deque.
+* Adds value to the front of the deque.
 ```js
     dq.pushFront(0);
 ```
 
 ### popBack()
 
-- Removes and returns the element from the back of the deque.
-- Returns null if the deque is empty.
+* Removes and returns the element from the back of the deque.
+* Returns null if the deque is empty.
 ```js
     const last = dq.popBack();
 ```
 
 ### popFront()
 
-- Removes and returns the element from the front of the deque.
-- Returns null if the deque is empty.
+* Removes and returns the element from the front of the deque.
+* Returns null if the deque is empty.
 ```js
     const first = dq.popFront();
 ```
 
 ### at(index)
 
-- Returns the element at the given index.
-- Throws an error if the index is out of bounds.
+* Returns the element at the given index.
+* Throws an error if the index is out of bounds.
 ```js
     const el = dq.at(2);
 ```
 
 ### print()
 
-- Prints all elements of the deque in order to the console.
+* Prints all elements of the deque in order to the console.
 ```js
     dq.print(); // [0, 1, 2, 3] 
 ```
