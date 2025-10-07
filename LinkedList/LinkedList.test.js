@@ -19,7 +19,7 @@ list.remove(20); // remove value 20
 list.pop_front(); // remove first element
 list.pop_back(); // remove last element
 
-list.print()
+list.visualize();
 
 // Reverse the list
 list.reverse();
@@ -28,7 +28,7 @@ list.reverse();
 list.sort((a, b) => a - b); // ascending numeric sort
 
 // Print list
-list.print(); // < 10 > < 15 > < 30 > null
+list.visualize(); // < 10 > < 15 > < 30 > null
 
 // Check size
 console.log(list.size()); // 3

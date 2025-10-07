@@ -42,7 +42,7 @@ list.reverse();
 list.sort((a, b) => a - b); // ascending numeric sort
 
 // Print list
-list.print(); // < 5 > < 10 > < 15 > null
+list.visualize(); // < 5 > < 10 > < 15 > null
 
 // Check size
 console.log(list.size()); // 3

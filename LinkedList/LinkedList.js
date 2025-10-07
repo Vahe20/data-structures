@@ -17,6 +17,59 @@ class LinkedList {
 		}
 	}
 
+	// helper
+
+	#merge(left, right, compareFn) {
+		let head = new Node(-1);
+		let current = head;
+
+		while (left && right) {
+			if (
+				compareFn
+					? compareFn(left.data, right.data) <= 0
+					: left.data - right.data <= 0
+			) {
+				current.next = left;
+				left.prev = current;
+				left = left.next;
+			} else {
+				current.next = right;
+				right.prev = current;
+				right = right.next;
+			}
+			current = current.next;
+		}
+
+		current.next = left || right;
+		if (current.next) current.next.prev = current;
+
+		return head.next;
+	}
+
+	#merge_sort(head, compareFn) {
+		if (!head || !head.next) return head;
+
+		let slow = head;
+		let fast = head.next;
+
+		while (fast && fast.next) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		let mid = slow.next;
+		slow.next = null;
+
+		let left = this.#merge_sort(head, compareFn);
+		let right = this.#merge_sort(mid, compareFn);
+
+		let sortedHead = this.#merge(left, right, compareFn);
+		sortedHead.prev = null;
+		return sortedHead;
+	}
+
+	// interface
+
 	size() {
 		return this.#size;
 	}
@@ -225,56 +278,7 @@ class LinkedList {
 		}
 	}
 
-	#merge(left, right, compareFn) {
-		let head = new Node(-1);
-		let current = head;
-
-		while (left && right) {
-			if (
-				compareFn
-					? compareFn(left.data, right.data) <= 0
-					: left.data - right.data <= 0
-			) {
-				current.next = left;
-				left.prev = current;
-				left = left.next;
-			} else {
-				current.next = right;
-				right.prev = current;
-				right = right.next;
-			}
-			current = current.next;
-		}
-
-		current.next = left || right;
-		if (current.next) current.next.prev = current;
-
-		return head.next;
-	}
-
-	#merge_sort(head, compareFn) {
-		if (!head || !head.next) return head;
-
-		let slow = head;
-		let fast = head.next;
-
-		while (fast && fast.next) {
-			slow = slow.next;
-			fast = fast.next.next;
-		}
-
-		let mid = slow.next;
-		slow.next = null;
-
-		let left = this.#merge_sort(head, compareFn);
-		let right = this.#merge_sort(mid, compareFn);
-
-		let sortedHead = this.#merge(left, right, compareFn);
-		sortedHead.prev = null;
-		return sortedHead;
-	}
-
-	print() {
+	visualize() {
 		let current = this.#head;
 		let result = "";
 		while (current) {
