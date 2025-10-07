@@ -1,6 +1,6 @@
 # DeQue
 
-`DeQue` is a custom double-ended queue (deque) implementation in JavaScript using a "burger" block structure for efficient insertion and deletion from both ends.  
+`DeQue` is a custom double-ended queue (deque) implementation in JavaScript using a "bucket" block structure for efficient insertion and deletion from both ends.  
 
 ---
 
@@ -15,20 +15,20 @@
 
 ## class-overview
 
-* burgerCap – number of blocks in the deque.
-* arrCap – number of slots per block.
+* bucketSize – number of blocks in the deque.
+* blockSize – number of slots per block.
 * size – number of elements currently in the deque.
-* burger – internal 2D array storing elements.
-* leftBlock / leftIndex – pointers for the front of the deque.
-* rightBlock / rightIndex – pointers for the back of the deque.
+* map – internal 2D array storing elements.
+* headBlock / headIndex – pointers for the front of the deque.
+* tailBlock / tailIndex – pointers for the back of the deque.
 
 ## Constructor
 
 ```js
-    new DeQue(iterable = [])
+    new DeQue(iterable = [], initialBucketSize = 4, initialBlockSize = 8)
 ```
 * iterable – optional array of elements to initialize the deque.
-* Initializes the internal burger structure and pointers.
+* Initializes the internal map structure and pointers.
 
 
 ## methods
@@ -71,11 +71,19 @@
     const el = dq.at(2);
 ```
 
-### print()
+### size()
+
+* return this size.
+
+```js
+    const size = dq.size();
+```
+
+### visualize()
 
 * Prints all elements of the deque in order to the console.
 ```js
-    dq.print(); // [0, 1, 2, 3] 
+    dq.visualize(); // [0, 1, 2, 3] 
 ```
 
 
