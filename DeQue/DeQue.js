@@ -87,6 +87,20 @@ class DeQue {
 
 	//interface
 
+	front() {
+		if (this.#size === 0) return null;
+		return this.#map[this.headBlock][this.headIndex];
+	}
+
+	back() {
+		if (this.#size === 0) return null;
+		return this.#map[this.tailBlock][this.tailIndex];
+	}
+
+	size() {
+		return this.#size;
+	}
+
 	pushBack(value) {
 		const pos = this.#copy_pos(this.tailBlock, this.tailIndex);
 
@@ -145,29 +159,28 @@ class DeQue {
 	}
 
 	at(index) {
-		if (index < 0 || index >= this.#size) throw new Error("index not valid");
+		if (index < 0 || index >= this.#size)
+			throw new Error("index not valid");
 
 		const pos = this.#copy_pos(this.headBlock, this.headIndex);
 
-		for (let i = 0; i < index; ++i)
-			this.#inc(pos);
+		for (let i = 0; i < index; ++i) this.#inc(pos);
 
 		return this.#read(pos);
 	}
 
-	front() {
-		if (this.#size === 0) return null;
-		return this.#map[this.headBlock][this.headIndex];
-	}
+	sort() {};
 
-	back() {
-		if (this.#size === 0) return null;
-		return this.#map[this.tailBlock][this.tailIndex];
-	}
+	toArray() {
+		const arr = [];
 
-	size() {
-		return this.#size;
-	}
+		for (const item of this) {
+			if (item)
+				arr.push(item);
+		}
+
+		return arr;
+	};
 
 	visualize() {
 		for (let i = 0; i < this.#map.length; ++i) {
@@ -177,7 +190,7 @@ class DeQue {
 			const display = bucket
 				.map(elem => (elem === null ? "." : elem))
 				.join(" ");
-			console.log(`Bucket_${i}: [ ${display}]`);
+			console.log(`Bucket_${i}: [${display}]`);
 		}
 	}
 
