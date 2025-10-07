@@ -71,12 +71,44 @@
     const el = dq.at(2);
 ```
 
+### front()
+
+* return first element;
+
+```js
+    const first = dq.front();
+```
+
+### back()
+
+* return last element;
+
+```js
+    const last = dq.back();
+```
+
 ### size()
 
 * return this size.
 
 ```js
     const size = dq.size();
+```
+
+### reverse()
+
+* reverse the all elements deQue.
+
+```js
+    dq.reverse();
+```
+
+### toArray()
+
+* replace to Array
+
+```js
+    const arr = dq.toArray();
 ```
 
 ### visualize()

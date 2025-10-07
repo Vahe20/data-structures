@@ -85,6 +85,12 @@ class DeQue {
 		}
 	}
 
+	#swap(pos1, pos2) {
+		const tmp = this.#read(pos1);
+		this.#write(pos1, this.#read(pos2));
+		this.#write(pos2, tmp);
+	}
+
 	//interface
 
 	front() {
@@ -169,18 +175,34 @@ class DeQue {
 		return this.#read(pos);
 	}
 
-	sort() {};
+	reverse() {
+		const leftPos = this.#copy_pos(this.headBlock, this.headIndex);
+		const rightPos = this.#copy_pos(this.tailBlock, this.tailIndex);
+
+		while (true) {
+			if (
+				leftPos.block > rightPos.block ||
+				(leftPos.block === rightPos.block &&
+					leftPos.index >= rightPos.index)
+			)
+				break;
+
+			this.#swap(leftPos, rightPos);
+
+			this.#inc(leftPos);
+			this.#dec(rightPos);
+		}
+	}
 
 	toArray() {
 		const arr = [];
 
 		for (const item of this) {
-			if (item)
-				arr.push(item);
+			if (item) arr.push(item);
 		}
 
 		return arr;
-	};
+	}
 
 	visualize() {
 		for (let i = 0; i < this.#map.length; ++i) {

@@ -35,4 +35,6 @@ try {
 console.log(errorCaught, "at: should throw an error for invalid index");
 
 // Test print (visual)
+
+dq.reverse();
 dq.visualize(); // should output [1, 2]
